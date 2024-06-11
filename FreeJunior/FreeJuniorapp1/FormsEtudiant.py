@@ -18,7 +18,7 @@ class StudentRegistrationForm(UserCreationForm):
     password2 = forms.CharField(label="Confirmer le mot de passe", widget=forms.PasswordInput(attrs={'class': 'form-control'}))
 
     school_name = forms.CharField(label="Nom de l'école où vous étudiez", max_length=255, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrez le nom de votre école'}))
-    specialty_name =  specialty = forms.ModelChoiceField(queryset=Specialty.objects.all(), label="Spécialité que vous souhaitez exercer", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
+    specialty_name = forms.ModelChoiceField(queryset=Specialty.objects.all(), label="Spécialité que vous souhaitez exercer", required=True, widget=forms.Select(attrs={'class': 'form-control'}))
     program_name = forms.CharField(label="Nom de votre filière universitaire", max_length=255, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Entrez le nom de votre filière'}))
     subject_name = forms.CharField(label="Matières pertinentes à votre spécialité", max_length=255, required=True, widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Listez les matières pertinentes'}))
 

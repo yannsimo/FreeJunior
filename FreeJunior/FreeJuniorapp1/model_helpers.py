@@ -1,23 +1,24 @@
-from typing import List
-
+from django.shortcuts import render
 from FreeJuniorapp1.models import Student, Specialty
+from FreeJuniorapp1 import navigation
 
-student_speciality_all = Specialty(name='All')
 
-def get_speciality_Student(speciality_name):
-    student = Student.objects.all()
-    if speciality_name == student_speciality_all.slug():
-        specialty_std = student_speciality_all
+from django.db.models import Q
+
+def get_speciality_Student(speciality_slug):
+    if speciality_slug.lower() == 'all':
+        students = Student.objects.all()
+        specialty_std = None
     else:
         try:
-            specialty_std = Specialty.objects.get(name__iexact=speciality_name)
-            student = student.filter(specialty=specialty_std)
+            specialty_std = Specialty.objects.get(slug=speciality_slug)
+            students = Student.objects.filter(specialty=specialty_std)
         except Specialty.DoesNotExist:
-            specialty_std = Specialty(name=speciality_name)
-            student = Student.objects.none()
+            students = Student.objects.none()
+            specialty_std = None  # Aucune spécialité trouvée, on utilise None pour signaler l'absence de spécialité
 
-    student = student.order_by('hourly_rate')
-    return specialty_std, student
+    students = students.order_by('hourly_rate')
+    return specialty_std, students
 
 def get_speciality():
     specialities = list(Specialty.objects.all().order_by('name'))

@@ -61,16 +61,17 @@ def login_view(request):
         form = EmailAuthenticationForm()
     return render(request, 'login/login.html', {'form': form})
 
-def student_list(request, speciality_name=model_helpers.student_speciality_all.slug()):
-    speciality, students = model_helpers.get_speciality_Student(speciality_name)
+
+def student_list(request, speciality_slug='all'):
+    speciality, students = model_helpers.get_speciality_Student(speciality_slug)
     specialities = model_helpers.get_speciality()
     context = {
         'specialities': specialities,
         'students': students,
-        'speciality': speciality,
-        'navigation_items': navigation.navigation_items(navigation.NAV_FormListStudent),
+        'speciality': speciality
     }
     return render(request, 'FreeJuniorapp1/student_list.html', context)
+
 
 def student_detail(request, student_id):
     student = get_object_or_404(Student, pk=student_id)

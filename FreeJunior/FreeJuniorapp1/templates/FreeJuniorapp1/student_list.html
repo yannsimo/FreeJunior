@@ -8,17 +8,19 @@ Liste des Étudiants
 <div class="container mt-4">
     <div class="row">
         <div class="col-sm-3">
-            <h5 class="text-primary">Spécialités</h5>
-            <ul class="list-group list-unstyled">
-                {% for cat in specialities %}
-                <li class="list-group-item">
-                    <a href="{% url 'student_list_filter' cat.name %}" class="badge badge-secondary">
-                        {{ cat.name|capfirst }}
-                    </a>
-                </li>
-                {% endfor %}
-            </ul>
-        </div>
+    <h5 class="text-primary">Spécialités</h5>
+    <ul class="list-group">
+        {% for cat in specialities %}
+        <li class="list-group-item">
+            <!-- Utilisation de badge pour le style et de btn pour les interactions comme un bouton -->
+            <a href="{% url 'student_list_filter' cat.slug  %}" class="btn badge badge-secondary">
+                {{ cat.name|capfirst }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
         <div class="col-sm-9">
             <h1 class="mb-4 text-primary">Liste des Étudiants {% if speciality %} - {{ speciality.name }}{% endif %}</h1>
             <div class="row">
