@@ -1,7 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Group, Permission
 from django.template.defaultfilters import slugify
-
+from django.db.models.signals import post_migrate
+from django.dispatch import receiver
 class Company(models.Model):
     name = models.CharField(max_length=255)
     email = models.EmailField(unique=True, null=True)
@@ -23,6 +24,36 @@ class Specialty(models.Model):
 
     def __str__(self):
         return self.name
+
+    @staticmethod
+    def create_initial_specialties():
+        specialties = [
+            "Développement Web",
+            "Développement Mobile",
+            "Graphic Design",
+            "UI/UX Design",
+            "Content Writing",
+            "Digital Marketing",
+            "SEO",
+            "Data Analysis",
+            "Machine Learning",
+            "Network Administration",
+            "Cybersecurity",
+            "Financial Analysis",
+            "Accounting",
+            "Tutoring",
+            "Video Editing",
+            "Animation",
+            "Project Management",
+            "Business Consulting",
+            "Mechanical Engineering",
+            "Civil Engineering",
+            "Fitness Training",
+            "Music Production",
+            "Performing Arts"
+        ]
+        for specialty in specialties:
+            Specialty.objects.get_or_create(name=specialty)
 
 class Program(models.Model):
     name = models.CharField(max_length=255)
@@ -140,3 +171,7 @@ class Comment(models.Model):
 
     def __str__(self):
         return '{} - {} (status={})'.format(self.company_name, self.text[:20], self.status)
+@receiver(post_migrate)
+def create_initial_specialties(sender, **kwargs):
+    if sender.name == 'FreeJuniorapp1':  # Replace with your app name
+        Specialty.create_initial_specialties()
