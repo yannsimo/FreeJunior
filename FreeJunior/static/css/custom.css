@@ -7,7 +7,7 @@
 }
 
 .navbar-brand, .nav-link {
-    color: #063BAD !important; /* Couleur de texte blanche */
+    color: #007bff !important; /* Couleur de texte blanche */
 }
 
 .nav-link:hover {
@@ -125,4 +125,8 @@
 .btn-outline-primary {
     margin-top: 10px;
 }
+
+
+
+
 

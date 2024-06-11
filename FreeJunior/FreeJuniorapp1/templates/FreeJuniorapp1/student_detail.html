@@ -17,23 +17,25 @@
                 <img src="{% static 'img/student.png' %}" class="card-img-top rounded-circle" alt="{{ student.first_name }} {{ student.last_name }}">
                 {% endif %}
               <div class="card-body text-center">
-    <h2 class="card-title text-primary">{{ student.first_name }} {{ student.last_name }}</h2>
-    <hr class="my-4">
-    <p class="card-text"><strong>Prix horaire :</strong> <span class="badge badge-success">{{ student.hourly_rate }} €/heure</span></p>
-    <p class="card-text"><strong>École :</strong> <span class="badge badge-info">{{ student.school.name }}</span></p>
-    <p class="card-text"><strong>Niveau d'étude :</strong> <span class="badge badge-secondary">{{ student.study_level }}</span></p>
-    <p class="card-text"><strong>Filière :</strong> <span class="badge badge-warning">{{ student.program.name }}</span></p>
-    <p class="card-text"><strong>Matière relative à la mission :</strong> <span class="badge badge-danger">{{ student.related_subject.name }}</span></p>
-    <p class="card-text"><strong>Spécialité :</strong> <span class="badge badge-primary">{{ student.specialty.name }}</span></p>
-    <p class="card-text"><strong>Description :</strong><br>{{ student.description|linebreaks|safe }}</p>
-    <p class="card-text"><strong>Curriculum Vitae (CV) :</strong>
+                        <h2 class="card-title text-primary">{{ student.first_name }} {{ student.last_name }}</h2>
+                        <hr class="my-4">
+                        <p class="card-text"><strong>Prix horaire :</strong> <span class="badge badge-success">{{ student.hourly_rate }} €/heure</span></p>
+                        <p class="card-text"><strong>École :</strong> <span class="badge badge-info">{{ student.school.name }}</span></p>
+                        <p class="card-text"><strong>Niveau d'étude :</strong> <span class="badge badge-secondary">{{ student.study_level }}</span></p>
+                        <p class="card-text"><strong>Filière :</strong> <span class="badge badge-warning">{{ student.program.name }}</span></p>
+                        <p class="card-text"><strong>Matière relative à la mission :</strong> <span class="badge badge-danger">{{ student.related_subject.name }}</span></p>
+                        <p class="card-text"><strong>Spécialité :</strong> <span class="badge badge-primary">{{ student.specialty.name }}</span></p>
+                        <p class="card-text"><strong>Description :</strong><br>{{ student.description|linebreaks|safe }}</p>
+                        <p class="card-text"><strong>Curriculum Vitae (CV) :</strong>
         {% if student.cv %}
         <a href="{{ student.cv.url }}" target="_blank" class="btn btn-outline-primary btn-sm">Télécharger le CV</a>
         {% else %}
         <span class="text-muted">Non disponible</span>
         {% endif %}
-    </p>
-</div>
+       </p>
+
+       </div>
+                <a href="{% url 'student_list' %}" class="btn btn-primary btn-lg mr-2 mt-2">Voir les étudiants</a>
 
             </div>
         </div>

@@ -4,8 +4,8 @@ NAV_FormStudent = 'Etudiant'
 NAV_FormCompany = 'Entreprise'
 NAV_FormListStudent = 'Liste des etudiants '
 NAV_ITEMS = [
-    (NAV_FormStudent, reverse_lazy('student_form')),
-    (NAV_FormCompany, reverse_lazy('company_form')),
+    (NAV_FormStudent, reverse_lazy('page_etudiant')),
+    (NAV_FormCompany, reverse_lazy('page_company')),
     (NAV_FormListStudent, reverse_lazy('student_list')),
 ]
 

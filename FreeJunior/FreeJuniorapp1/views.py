@@ -126,3 +126,17 @@ def edit_student_profile(request, pk):
         'student': student
     }
     return render(request, 'FreeJuniorapp1/edit_student_profile.html', context)
+
+
+def page_company(request):
+    context = {
+        'navigation_items': navigation.navigation_items(navigation.NAV_FormCompany),
+    }
+    return render(request, 'FreeJuniorapp1/PageEntreprise.html', context)
+
+
+def page_etudiant(request):
+    context = {
+        'navigation_items':  navigation.navigation_items(navigation.NAV_FormStudent),
+    }
+    return render(request, 'FreeJuniorapp1/PageEtudiant.html', context)
